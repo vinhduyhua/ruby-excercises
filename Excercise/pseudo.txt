@@ -1,0 +1,10 @@
+GET an integer
+
+GET s or p
+
+IF s
+    sum of integer
+ELSIF p
+    product of integer
+    
+    
