@@ -1,0 +1,57 @@
+The String#to_i method converts a string of numeric characters (including an optional plus or minus sign) to an Integer. String#to_i and the Integer constructor (Integer()) behave similarly. In this exercise, you will create a method that does the same thing.
+
+Write a method that takes a String of digits, and returns the appropriate number as an integer. You may not use any of the methods mentioned above.
+
+For now, do not worry about leading + or - signs, nor should you worry about invalid characters; assume all characters will be numeric.
+
+You may not use any of the standard conversion methods available in Ruby, such as String#to_i, Integer(), etc. Your method should do this the old-fashioned way and calculate the result by analyzing the characters in the string.
+
+Examples
+
+string_to_integer('4321') == 4321
+string_to_integer('570') == 570
+
+INPUT: a string of numeric characters (no need to check the string's validity)
+OUTPUT: an integer class of the input string
+
+Data Structure
+- String to array
+- Array to integer
+
+Algorithm
+- Take the string input
+- Convert the string to ASCII bytes
+- Using formular Integer = ASCII(numeric_string) - 48 to return an array of integer that has the same number as the string
+- Convert the array of integer to an integer base on the order of the number. [5,7,0] => 570
+  - Take the first number of the array
+  - Multiply it by 10
+  - Plus the next number on the array
+  - Multiply that result by 10 and plus the next number on the array
+  - Repeat this process for the remaining numbers
+- Return the integer
+  
+40 + 3 = 43
+430 + 2 = 432
+4320 + 1 = 4321
+
+-- Further exploration --
+Write a hexadecimal_to_integer method that converts a string representing a hexadecimal
+number to its integer value.
+
+Example:
+hexadecimal_to_integer('4D9f') == 19871
+
+What is hexadecimal?
+
+INPUT: hexadecimal string
+OUTPUT: integer of that number
+
+Algorithm:
+1. Create a Hash that contain the conversion from hexadecimal to integer
+2. Iterate through each characters of the hexadecimal string
+3. Convert the hexadecimal string to corresponded number based on the conversion Hash
+4. Return the integer
+
+Hexadecimal to Integer:
+[1,A,B,2]
+1*16**4 + 10*16**3 + 11*16**2 + 2*16
