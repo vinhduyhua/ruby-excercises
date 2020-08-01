@@ -1,0 +1,8 @@
+The computer currently picks a square at random. That's not very interesting. Let's make the computer defensive minded, so that if there's an immediate threat, then it will defend the 3rd square. We'll consider an "immediate threat" to be 2 squares marked by the opponent in a row. If there's no immediate threat, then it will just pick a random square.
+
+If player has two marks in a row -> fill the remaining square
+Else place a random piece
+
+If [board[1], board[2], board[3]] has two player marks
+  Place the piece on the empty square
+    

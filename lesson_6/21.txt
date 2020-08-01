@@ -1,0 +1,103 @@
+Rules:
+
+52-card deck.
+4 suits x 13 values
+suits = heart, diamond, club, spade
+values = 2, 3, 4, 5, 6, 7, 8, 9, 10, jack, queen, king, ace
+jack = queen = king = 10
+ace = 1 if sum of all cards excluding ace > 11
+ace = 11 if sum of all cards excluding ace < 11
+If player has multiple aces:
+- All aces = 1 if sum of all cards excluding ace > 11
+- If sum of all cards excluding ace < 11, 1st ace is 11 the rest is 1
+- If sum of all cards including 1st ace is < 11, 2nd ace is 11 the rest is 1
+- If sum of all cards including 2nd ace is < 11, 3rd ace is 11 4th ace is 1
+- If sum of all cards including 3rd ace is < 11, 4th ace is 11
+
+To win:
+Card value = sum of all cards
+player card value > dealer card value or dealer card value > 21 (bust)
+player card value < or = 21
+
+Step 1:
+Cards are randomly assigned
+Player has two cards
+Dealer has two cards
+Player see two player cards
+Player see one dealer card
+
+Step 2:
+Ask player to pick "hit" or "stay"
+Show player two cards and one dealer card
+If player chooses "hit", add one more card into the hand and ask again
+Show player current cards and one dealer card
+If player bust, display dealer as winner
+If player chooses "stay", dealer will choose "hit" or "stay"
+If the sum of dealer cards < 17, chooses "hit"
+If dealer bust, display player as winner
+Otherwise, chooses "stay"
+If dealer chooses "stay", compare the sum of both card values
+Display winner
+
+Data Structure:
+deck = {suits: values}
+hands = [num]
+
+Algorithm:
+Initialize the deck of cards with 4 suits and each suits has 13 values
+Assign two random cards to player's hand and dealer's hand from the deck
+Show player's hand and one card of dealer's hand
+Ask player to pick between "hit" and "stay"
+If user choose 'hit', add the new card into user hand
+Display the new player hands
+Ask user again
+If busted, declare dealer as winner
+If user choose stay, go to dealer's turn
+
+hand = queen, king ; ace = 1
+hand = 1, 2 ; ace = 11
+hand = 1, queen ; ace = 11
+hand = 10, 10 ; ace = 11
+hand = 10, 1 ; ace = 11
+
+Deciding ace value
+Assign two card
+If all are aces
+    Player win
+If ace is included
+    ace == 11
+    Draw new card
+    If new card make the total of hand excluding ace > 10, ace becomes 1
+    [ace, 11] - ace = 1
+    If new card make the total excluding ace > 10, ace becomes 1
+    [ace, 1, 10] - ace = 1
+    [ace, 9, 1] - ace = 11
+    If new card is an ace, keep current ace 10 and make the new ace one
+    [ace, 9, ace] - ace = 11 and 1
+    
+    If there are two aces:
+    [ace, 9, ace] - ace = 1 and 11
+    [ace, 9, ace, ace] - ace = 1
+    [ace, 8, ace, ace] - ace = 11, 1 and 1
+    [ace, 8, ace, ace, ace] - ace = 1
+    [ace, 7, ace, ace, ace] - ace = 11, 1, 1 and 1
+    
+    ace = 2, ace value = 12
+    ace = 3, ace value = 13
+    ace = 4, ace value = 14
+    
+    loop 4 times
+    if hand_without_ace.sum = 10 - 1 and ace = 2
+    ace = 11
+    else
+    ace is 1
+    
+    If ace is 2 and no ace sum is < 10
+    [11, 1]
+    else
+    [1, 1]
+    
+If user stay, dealer draw new card
+If sum of hand < 17, draw new card
+If busted, player win
+If sum of hand > 17 and not busted, compare the result
